@@ -1,6 +1,13 @@
-import PropTypes from 'prop-types';
 
-const ControlPanel = ({ name, onChange }) => {
+interface ControlPanelProps {
+  name: string;
+  // onChange: () => void 
+  // works until you dont use the event
+  // JS is happy to accept extra elemts and throw the rest away
+  onChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
+}
+
+const ControlPanel = ({ name, onChange}: ControlPanelProps) : JSX.Element => {
   return (
     <form
       className="flex flex-row gap-4 text-white bg-primary-10"
@@ -20,9 +27,5 @@ const ControlPanel = ({ name, onChange }) => {
   );
 };
 
-ControlPanel.propTypes = {
-  name: PropTypes.string,
-  onChange: PropTypes.func,
-};
 
 export default ControlPanel;
